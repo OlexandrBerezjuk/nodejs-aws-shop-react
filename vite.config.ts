@@ -7,6 +7,9 @@ import * as path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    outDir: 'infrastructure/resources/build', // Вказуємо папку для білду, яка буде використовуватись CDK
+  },
   resolve: {
     alias: {
       "~": path.resolve(__dirname, "src"),
