@@ -1,3 +1,4 @@
+import * as path from 'path';
 import {
   aws_cloudfront,
   aws_cloudfront_origins,
@@ -8,7 +9,7 @@ import {
 } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
-const path = './resources/build';
+const assetsPath = path.join(__dirname, '../resources/build');
 
 export class DeploymentService extends Construct {
   constructor(scope: Construct, id: string) {
@@ -41,7 +42,7 @@ export class DeploymentService extends Construct {
     );
 
     new aws_s3_deployment.BucketDeployment(this, 'BucketDeployment', {
-      sources: [aws_s3_deployment.Source.asset(path)],
+      sources: [aws_s3_deployment.Source.asset(assetsPath)],
       destinationBucket: hostingBucket,
       distribution,
       distributionPaths: ['/*'],
