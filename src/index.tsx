@@ -14,10 +14,11 @@ const queryClient = new QueryClient({
   },
 });
 
-if (import.meta.env.DEV) {
-  const { worker } = await import("./mocks/browser");
-  worker.start({ onUnhandledRequest: "bypass" });
-}
+// Mock this block when integrating with real backend, otherwise it will interfere with real API calls
+// if (import.meta.env.DEV) {
+//   const { worker } = await import("./mocks/browser");
+//   worker.start({ onUnhandledRequest: "bypass" });
+// }
 
 const container = document.getElementById("app");
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
