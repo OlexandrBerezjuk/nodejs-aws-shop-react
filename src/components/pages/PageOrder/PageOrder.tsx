@@ -85,7 +85,7 @@ export default function PageOrder() {
         {lastStatusItem?.status.toUpperCase()}
       </Typography>
       <Typography variant="h6">Change status:</Typography>
-      <Box py={2}>
+      <Box sx={{ py: 2 }}>
         <Formik
           initialValues={{ status: lastStatusItem.status, comment: "" }}
           enableReinitialize
@@ -99,7 +99,7 @@ export default function PageOrder() {
           {({ values, dirty, isSubmitting }: FormikProps<FormValues>) => (
             <Form autoComplete="off">
               <Grid container spacing={2}>
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <Field
                     component={TextField}
                     name="status"
@@ -119,7 +119,7 @@ export default function PageOrder() {
                     ))}
                   </Field>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <Field
                     component={TextField}
                     name="comment"
@@ -129,7 +129,11 @@ export default function PageOrder() {
                     multiline
                   />
                 </Grid>
-                <Grid item container xs={12} justifyContent="space-between">
+                <Grid
+                  container
+                  size={12}
+                  sx={{ justifyContent: "space-between" }}
+                >
                   <Button
                     type="submit"
                     variant="contained"

@@ -9,6 +9,13 @@ import * as path from "path";
 export default defineConfig({
   build: {
     outDir: 'infrastructure/resources/build', // Вказуємо папку для білду, яка буде використовуватись CDK
+    rollupOptions: {
+      onwarn(warning, warn) {
+        // MUI 9 files start with 'use client', which is meaningless outside React Server Components
+        if (warning.code === "MODULE_LEVEL_DIRECTIVE") return;
+        warn(warning);
+      },
+    },
   },
   resolve: {
     alias: {
@@ -20,5 +27,7 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: "./src/setupTests.ts",
+    // MUI 9 ships ESM that imports CJS Emotion; let Vite transform it so default imports interop
+    deps: { inline: [/@mui\//] },
   },
 });
