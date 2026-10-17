@@ -24,7 +24,7 @@ export function useInvalidateCart() {
   const queryClient = useQueryClient();
   return React.useCallback(
     () => queryClient.invalidateQueries("cart", { exact: true }),
-    []
+    [queryClient]
   );
 }
 

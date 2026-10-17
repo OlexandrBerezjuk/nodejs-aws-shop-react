@@ -16,7 +16,7 @@ export function useInvalidateOrders() {
   const queryClient = useQueryClient();
   return React.useCallback(
     () => queryClient.invalidateQueries("orders", { exact: true }),
-    []
+    [queryClient]
   );
 }
 
@@ -48,7 +48,7 @@ export function useInvalidateOrder() {
   return React.useCallback(
     (id: string) =>
       queryClient.invalidateQueries(["order", { id }], { exact: true }),
-    []
+    [queryClient]
   );
 }
 

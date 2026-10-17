@@ -69,7 +69,7 @@ export default function PageCart() {
     submitOrder(values as Omit<Order, "id">, {
       onSuccess: () => {
         setActiveStep(activeStep + 1);
-        invalidateCart();
+        void invalidateCart();
       },
     });
   };

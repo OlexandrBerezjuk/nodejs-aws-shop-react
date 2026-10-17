@@ -1,7 +1,4 @@
-/// <reference types="vitest" />
-/// <reference types="vite/client" />
-
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import * as path from "path";
 
@@ -9,7 +6,7 @@ import * as path from "path";
 export default defineConfig({
   build: {
     outDir: 'infrastructure/resources/build', // Вказуємо папку для білду, яка буде використовуватись CDK
-    rollupOptions: {
+    rolldownOptions: {
       onwarn(warning, warn) {
         // MUI 9 files start with 'use client', which is meaningless outside React Server Components
         if (warning.code === "MODULE_LEVEL_DIRECTIVE") return;
@@ -19,7 +16,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "~": path.resolve(__dirname, "src"),
+      "~": path.resolve(import.meta.dirname, "src"),
     },
   },
   plugins: [react()],
@@ -28,6 +25,6 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: "./src/setupTests.ts",
     // MUI 9 ships ESM that imports CJS Emotion; let Vite transform it so default imports interop
-    deps: { inline: [/@mui\//] },
+    server: { deps: { inline: [/@mui\//] } },
   },
 });

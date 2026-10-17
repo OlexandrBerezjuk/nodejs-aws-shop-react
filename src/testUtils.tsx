@@ -4,7 +4,7 @@ import { render, RenderOptions } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { theme } from "~/theme";
 
-function Providers({ children }: { children: React.ReactElement }) {
+function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {

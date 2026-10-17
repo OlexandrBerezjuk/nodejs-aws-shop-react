@@ -5,6 +5,8 @@ import Container from "@mui/material/Container";
 import Header from "~/components/MainLayout/components/Header";
 import Box from "@mui/material/Box";
 
+const currentYear = new Date().getFullYear();
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -12,7 +14,7 @@ function Copyright() {
       <Link color="inherit" href="https://material-ui.com/" underline="hover">
         My Store
       </Link>{" "}
-      {new Date().getFullYear()}
+      {currentYear}
       {"."}
     </Typography>
   );

@@ -17,7 +17,7 @@ const queryClient = new QueryClient({
 // Mock this block when integrating with real backend, otherwise it will interfere with real API calls
 // if (import.meta.env.DEV) {
 //   const { worker } = await import("./mocks/browser");
-//   worker.start({ onUnhandledRequest: "bypass" });
+//   worker.start({ onUnhandledFrame: "bypass" });
 // }
 
 const container = document.getElementById("app");

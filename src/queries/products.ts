@@ -21,7 +21,7 @@ export function useInvalidateAvailableProducts() {
   const queryClient = useQueryClient();
   return React.useCallback(
     () => queryClient.invalidateQueries("available-products", { exact: true }),
-    []
+    [queryClient]
   );
 }
 
@@ -43,7 +43,7 @@ export function useRemoveProductCache() {
   return React.useCallback(
     (id?: string) =>
       queryClient.removeQueries(["product", { id }], { exact: true }),
-    []
+    [queryClient]
   );
 }
 
