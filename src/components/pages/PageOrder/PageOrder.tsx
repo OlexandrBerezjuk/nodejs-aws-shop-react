@@ -1,7 +1,7 @@
 import React from "react";
 import { Order, OrderItem } from "~/models/Order";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import PaperLayout from "~/components/PaperLayout/PaperLayout";
 import Typography from "@mui/material/Typography";
 import API_PATHS from "~/constants/apiPaths";
@@ -21,7 +21,7 @@ import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import Box from "@mui/material/Box";
-import { useQueries } from "react-query";
+import { useQueries } from "@tanstack/react-query";
 import { useInvalidateOrder, useUpdateOrderStatus } from "~/queries/orders";
 
 type FormValues = {
@@ -31,24 +31,26 @@ type FormValues = {
 
 export default function PageOrder() {
   const { id } = useParams<{ id: string }>();
-  const results = useQueries([
-    {
-      queryKey: ["order", { id }],
-      queryFn: async () => {
-        const res = await axios.get<Order>(`${API_PATHS.order}/order/${id}`);
-        return res.data;
+  const results = useQueries({
+    queries: [
+      {
+        queryKey: ["order", { id }],
+        queryFn: async () => {
+          const res = await axios.get<Order>(`${API_PATHS.order}/order/${id}`);
+          return res.data;
+        },
       },
-    },
-    {
-      queryKey: "products",
-      queryFn: async () => {
-        const res = await axios.get<AvailableProduct[]>(
-          `${API_PATHS.bff}/product/available`
-        );
-        return res.data;
+      {
+        queryKey: ["products"],
+        queryFn: async () => {
+          const res = await axios.get<AvailableProduct[]>(
+            `${API_PATHS.bff}/product/available`
+          );
+          return res.data;
+        },
       },
-    },
-  ]);
+    ],
+  });
   const [
     { data: order, isLoading: isOrderLoading },
     { data: products, isLoading: isProductsLoading },

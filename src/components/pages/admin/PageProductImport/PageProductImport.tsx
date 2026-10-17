@@ -3,7 +3,7 @@ import ProductsTable from "~/components/pages/admin/PageProductImport/components
 import CSVFileImport from "~/components/pages/admin/PageProductImport/components/CSVFileImport";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 export default function PageProductImport() {
   return (

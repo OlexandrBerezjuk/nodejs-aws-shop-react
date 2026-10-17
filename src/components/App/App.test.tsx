@@ -1,4 +1,4 @@
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router";
 import { test, expect } from "vitest";
 import App from "~/components/App/App";
 import { corsHeaders, server } from "~/mocks/server";
