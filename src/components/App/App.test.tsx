@@ -1,8 +1,8 @@
 import { MemoryRouter } from "react-router-dom";
 import { test, expect } from "vitest";
 import App from "~/components/App/App";
-import { server } from "~/mocks/server";
-import { rest } from "msw";
+import { corsHeaders, server } from "~/mocks/server";
+import { delay, http, HttpResponse } from "msw";
 import API_PATHS from "~/constants/apiPaths";
 import { CartItem } from "~/models/CartItem";
 import { AvailableProduct } from "~/models/Product";
@@ -28,15 +28,14 @@ test("Renders products list", async () => {
     },
   ];
   server.use(
-    rest.get(`${API_PATHS.bff}/products`, (req, res, ctx) => {
-      return res(
-        ctx.status(200),
-        ctx.delay(),
-        ctx.json<AvailableProduct[]>(products)
-      );
+    http.get(`${API_PATHS.bff}/products`, async () => {
+      await delay();
+      return HttpResponse.json<AvailableProduct[]>(products, {
+        headers: corsHeaders,
+      });
     }),
-    rest.get(`${API_PATHS.cart}/profile/cart`, (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json<CartItem[]>([]));
+    http.get(`${API_PATHS.cart}/profile/cart`, () => {
+      return HttpResponse.json<CartItem[]>([], { headers: corsHeaders });
     })
   );
   renderWithProviders(

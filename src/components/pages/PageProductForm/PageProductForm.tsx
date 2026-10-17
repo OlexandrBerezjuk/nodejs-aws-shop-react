@@ -32,7 +32,7 @@ export default function PageProductForm() {
       : formattedValues;
     return upsertAvailableProduct(productToSave, {
       onSuccess: () => {
-        invalidateAvailableProducts();
+        void invalidateAvailableProducts();
         removeProductCache(id);
         navigate("/admin/products");
       },

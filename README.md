@@ -11,7 +11,7 @@ This is frontend starter project for nodejs-aws mentoring program. It uses the f
 - [Yup](https://github.com/jquense/yup) as a validation schema
 - [Vitest](https://vitest.dev/) as a test runner
 - [MSW](https://mswjs.io/) as an API mocking library
-- [Eslint](https://eslint.org/) as a code linting tool
+- [Oxlint](https://oxc.rs/docs/guide/usage/linter) as a code linting tool
 - [Prettier](https://prettier.io/) as a code formatting tool
 - [TypeScript](https://www.typescriptlang.org/) as a type checking tool
 
