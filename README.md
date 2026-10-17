@@ -3,10 +3,10 @@
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
 
 - [Vite](https://vitejs.dev/) as a project bundler
-- [React](https://beta.reactjs.org/) as a frontend framework
-- [React-router-dom](https://reactrouterdotcom.fly.dev/) as a routing library
+- [React](https://react.dev/) as a frontend framework
+- [React Router](https://reactrouter.com/) as a routing library
 - [MUI](https://mui.com/) as a UI framework
-- [React-query](https://react-query-v3.tanstack.com/) as a data fetching library
+- [TanStack Query](https://tanstack.com/query) as a data fetching library
 - [Formik](https://formik.org/) as a form library
 - [Yup](https://github.com/jquense/yup) as a validation schema
 - [Vitest](https://vitest.dev/) as a test runner
